@@ -7,12 +7,9 @@ jobs:
   tweet:
     runs-on: ubuntu-latest
     steps:
-      - name: Get release version
-        run: echo ::set-output name=VERSION::${GITHUB_REF/refs\/tags\//}
-
       - uses: ethomson/send-tweet-action@v1
         with:
-          status: "Release of viSens-S version ${{ env.VERSION }} is available! Download it here: https://github.com/Albert-Alvarez/viSens-S/releases/latest"
+          status: "Release of viSens-S version ${{GITHUB_REF/refs\/tags\//}} is available! Download it here: https://github.com/Albert-Alvarez/viSens-S/releases/latest"
           consumer-key: ${{ secrets.TWITTER_CONSUMER_API_KEY }}
           consumer-secret: ${{ secrets.TWITTER_CONSUMER_API_SECRET }}
           access-token: ${{ secrets.TWITTER_ACCESS_TOKEN }}
